@@ -2,22 +2,38 @@ package main
 
 import (
 	"fmt"
+	rl "github.com/gen2brain/raylib-go/raylib"
 	"io"
 	"net/http"
-	rl "github.com/gen2brain/raylib-go/raylib"
 	"time"
 )
 
 func main() {
 	var config = readConfig()
 	var endpoint = fmt.Sprintf("%s/api/states", config.Host)
+	var statsChan = make(chan SensorStats)
+	go poll(config, endpoint, statsChan)
 	initRender()
 	defer endRender()
+	var currentStats SensorStats
 	for !rl.WindowShouldClose() {
-		var response = request(config, endpoint)
+		// do not block
+		select {
+		case currentStats = <-statsChan:
+			fmt.Printf("Received new stats from channel\n")
+			// no-op
+		default:
+			// no-op
+		}
+		render(currentStats)
+	}
+}
+
+func poll(config Config, url string, sensorChan chan SensorStats) {
+	for {
+		var response = request(config, url)
 		var sensorStats = UnmarshallStates(config, response)
-		render(sensorStats)
-		// TODO move to another goroutine
+		sensorChan <- sensorStats
 		time.Sleep(time.Millisecond * time.Duration(config.PollIntervalMs))
 	}
 }
