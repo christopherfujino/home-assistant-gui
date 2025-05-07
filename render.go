@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	//"math"
 	rl "github.com/gen2brain/raylib-go/raylib"
 	image_color "image/color"
+	"math"
 )
 
 var color = image_color.RGBA{
@@ -23,7 +23,9 @@ const size int32 = 24
 const width = 600
 const height = 400
 const fps = 30
-const GRADIENT_INTERVAL = 0x5
+const gradientInterval = 0.1
+
+var gradientVariable float64
 
 func initRender() {
 	rl.InitWindow(width, height, "Home Assistant")
@@ -35,10 +37,15 @@ func endRender() {
 }
 
 func render(stats SensorStats) {
-	//math.Sin()
-	green += GRADIENT_INTERVAL
+	gradientVariable += gradientInterval
+	if gradientVariable > math.Pi*2 {
+		gradientVariable = 0
+	}
+	var gradientSin = math.Sin(gradientVariable)
+	green = uint16((gradientSin+1)*(0x7F-0x40)) + 0x40
+	// TODO delete to optimize
 	if green > 0xFF {
-		green = 0x20
+		panic("math error!")
 	}
 	rl.BeginDrawing()
 	rl.ClearBackground(backgroundColor)
