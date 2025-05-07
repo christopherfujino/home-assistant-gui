@@ -49,7 +49,9 @@ func request(config Config, url string) []byte {
 	resp, err := client.Do(req)
 
 	if err != nil {
-		panic(err)
+		// TODO surface to UI that there was a network error
+		var msg = err.Error()
+		panic(msg)
 	}
 	defer resp.Body.Close()
 	body, err := io.ReadAll(resp.Body)

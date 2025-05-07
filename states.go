@@ -73,7 +73,8 @@ func UnmarshallStates(config Config, rawStates []byte) SensorStats {
 		}
 	}
 	if illuminance == nil || battery == nil || temperature == nil || moisture == nil || conductivity == nil {
-		panic("TODO")
+		var msg = fmt.Sprintf("Invalid data in:\n\n%s", string(rawStates))
+		panic(msg)
 	}
 	return SensorStats{
 		Illuminance:  *illuminance,

@@ -39,7 +39,7 @@ func endRender() {
 func render(stats SensorStats) {
 	gradientVariable += gradientInterval
 	if gradientVariable > math.Pi*2 {
-		gradientVariable = 0
+		gradientVariable = gradientVariable - math.Pi*2
 	}
 	var gradientSin = math.Sin(gradientVariable)
 	green = uint16((gradientSin+1)*(0x7F-0x40)) + 0x40
