@@ -20,10 +20,10 @@ var backgroundColor = image_color.RGBA{
 var green uint16
 
 const size int32 = 32
-const width = 600
-const height = 400
+const width = 800
+const height = 480
 const fps = 30
-const gradientInterval float64 = 2.0 / fps
+const gradientInterval float64 = 4.0 / fps
 
 var gradientVariable float64
 
