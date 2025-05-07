@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"io"
 	"net/http"
+	rl "github.com/gen2brain/raylib-go/raylib"
 	"time"
 )
 
@@ -11,12 +12,13 @@ func main() {
 	var config = readConfig()
 	var endpoint = fmt.Sprintf("%s/api/states", config.Host)
 	initRender()
-	for {
+	defer endRender()
+	for !rl.WindowShouldClose() {
 		var response = request(config, endpoint)
 		var sensorStats = UnmarshallStates(config, response)
 		render(sensorStats)
+		// TODO move to another goroutine
 		time.Sleep(time.Millisecond * time.Duration(config.PollIntervalMs))
-		fmt.Println()
 	}
 }
 
