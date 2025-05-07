@@ -1,0 +1,2 @@
+# This is a volume mounted for the container to write its config files.
+config
