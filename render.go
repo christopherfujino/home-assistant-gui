@@ -19,11 +19,11 @@ var backgroundColor = image_color.RGBA{
 // overflow.
 var green uint16
 
-const size int32 = 24
+const size int32 = 32
 const width = 600
 const height = 400
 const fps = 30
-const gradientInterval = 0.1
+const gradientInterval float64 = 2.0 / fps
 
 var gradientVariable float64
 
@@ -50,6 +50,6 @@ func render(stats SensorStats) {
 	rl.BeginDrawing()
 	rl.ClearBackground(backgroundColor)
 	var tempText = fmt.Sprintf("Temperature:\t%v\u00B0\nIlluminance:\t%d lx\nBattery:\t%d%%\nConductivity:\t%d\u00B5S/cm\nMoisture:\t%d%%", stats.Temperature, stats.Illuminance, stats.Battery, stats.Conductivity, stats.Moisture)
-	rl.DrawText(tempText, 2, 2, size, image_color.RGBA{G: uint8(green), A: 0xFF})
+	rl.DrawText(tempText, 5, 5, size, image_color.RGBA{G: uint8(green), A: 0xFF})
 	rl.EndDrawing()
 }
