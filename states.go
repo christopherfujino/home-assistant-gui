@@ -45,6 +45,7 @@ func UnmarshallStates(config Config, rawStates []byte) SensorStats {
 				case "conductivity":
 					conductivityValue, err := strconv.Atoi(state["state"].(string))
 					if err != nil {
+						// This could be "unavailable"
 						panic(err)
 					}
 					conductivity = &conductivityValue
