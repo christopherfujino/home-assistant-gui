@@ -13,17 +13,16 @@ func main() {
 	var endpoint = fmt.Sprintf("%s/api/states", config.Host)
 	var statsChan = make(chan SensorStats)
 	go poll(config, endpoint, statsChan)
-	initRender()
+	initRender(config)
 	defer endRender()
 	var currentStats SensorStats
 	for !rl.WindowShouldClose() {
-		// do not block
 		select {
 		case currentStats = <-statsChan:
 			fmt.Printf("Received new stats from channel\n")
 			// no-op
 		default:
-			// no-op
+			// Do not block
 		}
 		render(currentStats)
 	}

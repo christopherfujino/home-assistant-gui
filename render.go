@@ -27,8 +27,11 @@ const gradientInterval float64 = 4.0 / fps
 
 var gradientVariable float64
 
-func initRender() {
+func initRender(config Config) {
 	rl.InitWindow(width, height, "Home Assistant")
+	if config.Fullscreen {
+		rl.ToggleFullscreen()
+	}
 	rl.SetTargetFPS(fps)
 }
 

@@ -20,6 +20,7 @@ type Config struct {
 	Token          string   `json:"TOKEN"`
 	SensorNames    []string `json:"SENSOR_NAMES"`
 	PollIntervalMs int      `json:"POLL_INTERVAL_MS"`
+	Fullscreen     bool     `json:"FULLSCREEN"`
 }
 
 func readConfig() Config {
@@ -37,7 +38,11 @@ func readConfig() Config {
 		panic("You must provide a \"TOKEN\" field in your `config.json` file.")
 	}
 	if config.PollIntervalMs == 0 {
-		panic("You must provide a \"PollIntervalMs\" field in your `config.json` file.")
+		panic("You must provide a \"POLL_INTERVAL_MS\" field in your `config.json` file.")
 	}
+	if len(config.SensorNames) == 0 {
+		panic("You must provide a \"SENSOR_NAMES\" field in your `config.json` file.")
+	}
+
 	return config
 }
