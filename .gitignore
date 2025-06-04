@@ -1,3 +1,5 @@
 config.json
 # binary if invoking `go build .`
 home-assistant-gui-go
+
+*.log

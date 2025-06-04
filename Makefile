@@ -1,6 +1,6 @@
 .PHONY: run
 run:
-	go run .
+	LIBGL_ALWAYS_SOFTWARE=1 go run . 2>&1 | tee ./debug.log
 
 .PHONY: build
 build:
