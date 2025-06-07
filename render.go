@@ -30,6 +30,7 @@ var gradientVariable float64
 func initRender(config Config) {
 	rl.InitWindow(width, height, "Home Assistant")
 	if config.Fullscreen {
+		rl.HideCursor()
 		rl.ToggleFullscreen()
 	}
 	rl.SetTargetFPS(fps)
