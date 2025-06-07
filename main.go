@@ -5,6 +5,7 @@ import (
 	rl "github.com/gen2brain/raylib-go/raylib"
 	"io"
 	"net/http"
+	"os" // for os.Getenv
 	"time"
 )
 
@@ -12,7 +13,9 @@ func main() {
 	var config = readConfig()
 	var endpoint = fmt.Sprintf("%s/api/states", config.Host)
 	var statsChan = make(chan SensorStats)
+
 	go poll(config, endpoint, statsChan)
+
 	initRender(config)
 	defer endRender()
 	var currentStats SensorStats
@@ -29,11 +32,20 @@ func main() {
 }
 
 func poll(config Config, url string, sensorChan chan SensorStats) {
-	for {
-		var response = request(config, url)
-		var sensorStats = UnmarshallStates(config, response)
-		sensorChan <- sensorStats
-		time.Sleep(time.Millisecond * time.Duration(config.PollIntervalMs))
+	if os.Getenv("MOCK_API") == "1" {
+		fmt.Printf("Sent mock data\n")
+		sensorChan <- SensorStats{
+			Battery:     69,
+			Temperature: 69.69,
+			Illuminance: 420,
+		}
+	} else {
+		for {
+			var response = request(config, url)
+			var sensorStats = UnmarshallStates(config, response)
+			sensorChan <- sensorStats
+			time.Sleep(time.Millisecond * time.Duration(config.PollIntervalMs))
+		}
 	}
 }
 
