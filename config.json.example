@@ -1,0 +1,7 @@
+{
+  "HOST": "http://localhost:8123",
+  "TOKEN": "deadbeef",
+  "SENSOR_NAMES": ["my_great_sensor"],
+  "FULLSCREEN": false,
+  "POLL_INTERVAL_MS": 2000
+}

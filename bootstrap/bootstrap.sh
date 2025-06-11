@@ -2,19 +2,22 @@
 
 set -euo pipefail
 
+ROOT="$(dirname "$(dirname "$(realpath "$BASH_SOURCE")")")"
+
 if [[ $(id -u) -eq 0 ]]; then
   echo "Must not run as root"
   exit 1
 fi
 
-if [[ ! -d '../ignore' ]]; then
-  mkdir ../ignore
+if [[ ! -d "$ROOT/ignore" ]]; then
+  mkdir "$ROOT/ignore"
 fi
 
-LOCAL_FONT_PATH='../ignore/font.zip'
+# Ensure fonts are cached
+LOCAL_FONT_PATH="$ROOT/ignore/font.zip"
 if [[ ! -f "$LOCAL_FONT_PATH" ]]; then
   curl -L 'https://style64.org/file/C64_TrueType_v1.2.1-STYLE.zip' -o "$LOCAL_FONT_PATH"
-  unzip "$LOCAL_FONT_PATH" -d '../ignore'
+  unzip "$LOCAL_FONT_PATH" -d "$ROOT/ignore"
 fi
 
 # D-Bus is required for bluetooth
