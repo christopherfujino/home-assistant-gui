@@ -6,7 +6,14 @@ Designed to be run on the same device that the Home Assistant is running on.
 ## Dependencies
 
 ```bash
-sudo apt install libgl1-mesa-dev libxi-dev libxcursor-dev libxrandr-dev libxinerama-dev libwayland-dev libxkbcommon-dev
+sudo apt install \
+     libgl1-mesa-dev \
+     libxi-dev \
+     libxcursor-dev \
+     libxrandr-dev \
+     libxinerama-dev \
+     libwayland-dev \
+     libxkbcommon-dev
 ```
 
 ## Setup
