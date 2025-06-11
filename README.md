@@ -1,3 +1,5 @@
+# Planttadore UI
+
 A minimal GUI frontend for a portable
 [Home Assistant](https://www.home-assistant.io/) install.
 
