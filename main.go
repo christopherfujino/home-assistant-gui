@@ -24,8 +24,6 @@ func main() {
 		case currentStats = <-statsChan:
 			fmt.Printf("Received new stats from channel\n")
 			// no-op
-		default:
-			// Do not block
 		}
 		render(currentStats)
 	}
