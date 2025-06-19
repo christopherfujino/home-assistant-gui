@@ -47,11 +47,11 @@ func endRender() {
 	rl.CloseWindow()
 }
 
-func render(stats SensorStats) {
+func render(stats Stats) {
 	rl.BeginDrawing()
 	rl.ClearBackground(backgroundColor)
 	rl.DrawRectangleLinesEx(rl.Rectangle{X: 0, Y: 0, Width: width, Height: height}, borderDepth, foregroundColor)
-	var tempText = fmt.Sprintf(" ** Planttadore 25 **\n\nTemperature:\t%vF\nIlluminance:\t%d lx\nConductivity:\t%d S/cm\nMoisture:\t%d%%", stats.Temperature, stats.Illuminance, stats.Conductivity, stats.Moisture)
+	var tempText = fmt.Sprintf(" ** Planttadore 25 **\n\nTemperature:\t%vF\nIlluminance:\t%d lx\nConductivity:\t%d S/cm\nMoisture:\t%d%%\nCPU Temp:\t%.1fC", stats.Temperature, stats.Illuminance, stats.Conductivity, stats.Moisture, stats.CPUTemp)
 	rl.DrawTextEx(font, tempText, rl.Vector2{X: borderDepth + 5, Y: float32(borderDepth + font.BaseSize)}, float32(font.BaseSize), spacing, foregroundColor)
 	rl.EndDrawing()
 }

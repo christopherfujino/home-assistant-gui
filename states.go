@@ -15,6 +15,11 @@ type SensorStats struct {
 	Conductivity int
 }
 
+type Stats struct {
+	SensorStats
+	CPUTemp float64
+}
+
 func UnmarshallStates(config Config, rawStates []byte) SensorStats {
 	var states []map[string]any
 
