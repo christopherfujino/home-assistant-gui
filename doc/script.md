@@ -28,14 +28,22 @@ Tech stack:
     - I love technology, but not hyperconnectivity
         - Should be self-contained, no networking, no mobile app
         - To find out how the plant is doing, you still need to walk over to it
+- Tech stack slide deck
 - Technical problems to solve:
     - Sensor
-        - Obtaining
-        - Integrating it into the system
+        - Obtaining (easy)
+        - Integrating it into the system (hard?)
+    - Custom software
+        - Integrating with sensor data (hard?)
+        - Presenting a user interface (medium easy)
     - Display
-        - Obtaining
-        - Integrating it
-    - UI software
+        - Obtaining (easy)
+        - Integrating it (easy)
+- Home Assistant OS is headless
+- Screen was upside down
+- Latency between sensor and device
+- Heat
+    - Throttling FPS
 - What you'll need:
     - Raspberry Pi 4
     - 800 x 480 LCD screen
