@@ -28,7 +28,7 @@ Tech stack:
     - I love technology, but not hyperconnectivity
         - Should be self-contained, no networking, no mobile app
         - To find out how the plant is doing, you still need to walk over to it
-- Tech stack slide deck
+    - Should be open source
 - Technical problems to solve:
     - Sensor
         - Obtaining (easy)
@@ -40,6 +40,7 @@ Tech stack:
         - Obtaining (easy)
         - Integrating it (easy)
 - Home Assistant OS is headless
+- Tech stack slide deck
 - Screen was upside down
 - Latency between sensor and device
 - Heat
