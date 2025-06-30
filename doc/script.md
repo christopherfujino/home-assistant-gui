@@ -2,7 +2,8 @@
 
 <link rel="stylesheet" href="https://www.christopherfujino.com/global-style.min.css">
 
-Started with this post: https://system76.com/weekend-project/house-plant-monitoring/
+Started with this post:
+https://system76.com/weekend-project/house-plant-monitoring/
 
 Tech stack:
 
@@ -16,6 +17,10 @@ Tech stack:
 
 
 ## Script
+
+Hello Youtube! Mr. Eclectic here. Today I'm making a sequel to Lexie's video
+on the Smart Planter we designed together. This project was a true 50/50
+collaboration.
 
 - Initial idea
     - Combine
