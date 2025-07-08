@@ -1,4 +1,4 @@
-module github.com/christopherfujino/home-assistant-gui-go/v2
+module github.com/christopherfujino/home-assistant-gui
 
 go 1.24.2
 
