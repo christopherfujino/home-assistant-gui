@@ -12,6 +12,14 @@ import (
 )
 
 func main() {
+	if len(os.Args) > 1 {
+		animateJson()
+	} else {
+		realMain()
+	}
+}
+
+func realMain() {
 	var config = readConfig()
 	var endpoint = fmt.Sprintf("%s/api/states", config.Host)
 	var statsChan = make(chan Stats)
@@ -32,7 +40,6 @@ func main() {
 }
 
 func poll(config Config, url string, sensorChan chan Stats) {
-	// /sys/class/thermal/thermal_zone0/temp
 	if os.Getenv("MOCK_API") == "1" {
 		fmt.Printf("Sent mock data\n")
 		sensorChan <- Stats{
@@ -59,7 +66,8 @@ func poll(config Config, url string, sensorChan chan Stats) {
 func readTemp() float64 {
 	bytes, err := os.ReadFile("/sys/class/thermal/thermal_zone0/temp")
 	if err != nil {
-		panic(err)
+		// Might be on WSL
+		return 42.1002
 	}
 	s := string(bytes)
 	s = strings.TrimSpace(s)

@@ -18,9 +18,13 @@ Tech stack:
 
 ## Script
 
+### P1
 Hello Youtube! Mr. Eclectic here. Today I'm making a sequel to Lexie's video
 on the Smart Planter we designed together. This project was a true 50/50
-collaboration.
+collaboration. While Lexie was responsible for the physical case and the
+visual aesthetic of the project, I was responsible for the technical
+engineering aspects of the project. And that's what this video is going to be
+about.
 
 - Initial idea
     - Combine
