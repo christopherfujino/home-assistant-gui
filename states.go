@@ -18,6 +18,7 @@ type SensorStats struct {
 type Stats struct {
 	SensorStats
 	CPUTemp float64
+	CursorOn bool
 }
 
 func UnmarshallStates(config Config, rawStates []byte) SensorStats {
