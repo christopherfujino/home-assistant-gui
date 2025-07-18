@@ -23,8 +23,10 @@ func realMain() {
 	var config = readConfig()
 	var endpoint = fmt.Sprintf("%s/api/states", config.Host)
 	var statsChan = make(chan Stats)
+	var cursorChan = make(chan bool)
 
 	go poll(config, endpoint, statsChan)
+	go animateCursor(cursorChan)
 
 	initRender(config)
 	defer endRender()
@@ -33,6 +35,7 @@ func realMain() {
 		select {
 		case currentStats = <-statsChan:
 			fmt.Printf("Received new stats from channel\n")
+		case currentStats.CursorOn = <-cursorChan:
 			// no-op
 		}
 		render(currentStats)
@@ -104,4 +107,13 @@ func request(config Config, url string) []byte {
 		panic(msg)
 	}
 	return body
+}
+
+func animateCursor(ch chan bool) {
+	cursorState := false
+	for {
+		cursorState = !cursorState
+		ch <- cursorState
+		time.Sleep(time.Millisecond * 500)
+	}
 }
