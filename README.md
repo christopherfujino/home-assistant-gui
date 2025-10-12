@@ -51,3 +51,9 @@ nvim ./config.json
 ```
 
 You will need to fill in your own `TOKEN` and `SENSOR_NAMES` values.
+
+To allow launching an X11 session via SSH, edit `/etc/X11/Xwrapper.config` to have:
+
+```
+allowed_users = anybody
+```
